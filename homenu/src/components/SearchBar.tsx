@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import FavoriteButton from "./FavoriteButton";
 
 type Ingredient = { id?: string; name: string; amount?: number; unit?: string };
 type Recipe = {
@@ -25,6 +27,32 @@ export default function SearchBar({
   const [results, setResults] = useState<Recipe[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { status } = useSession();
+  const [favoritedIds, setFavoritedIds] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      fetch("/api/favorites")
+        .then((res) => (res.ok ? res.json() : []))
+        .then((data: any[]) => {
+          const ids: Record<string, boolean> = {};
+          data.forEach((recipe) => {
+            ids[recipe.id] = true;
+          });
+          setFavoritedIds(ids);
+        })
+        .catch((err) => console.error("Error loading favorites", err));
+    } else {
+      setFavoritedIds({});
+    }
+  }, [status]);
+
+  const handleFavoriteToggle = (recipeId: string, isFavorited: boolean) => {
+    setFavoritedIds((prev) => ({
+      ...prev,
+      [recipeId]: isFavorited,
+    }));
+  };
 
   const parseIngredients = (value: string) =>
     value
@@ -138,9 +166,16 @@ export default function SearchBar({
               <Link href={`/recipe/${r.id}`} key={r.id} className="block group">
                 <article className="h-full rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:bg-zinc-900 cursor-pointer active:scale-[0.99] flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
-                      {r.title}
-                    </h3>
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors line-clamp-2">
+                        {r.title}
+                      </h3>
+                      <FavoriteButton
+                        recipeId={r.id}
+                        initialIsFavorited={!!favoritedIds[r.id]}
+                        onToggle={handleFavoriteToggle}
+                      />
+                    </div>
                     <div className="mt-2.5 flex items-center gap-4 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
                       <span className="flex items-center gap-1">
                         ⏱️ Hazırlık: {r.prepTime ?? "-"} dk

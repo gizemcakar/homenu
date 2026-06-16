@@ -17,9 +17,7 @@ const getEnginePath = () => {
 };
 
 const enginePath = getEnginePath();
-if (!process.env.PRISMA_QUERY_ENGINE_LIBRARY) {
-  process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
-}
+process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
 
 const prisma = new PrismaClient();
 

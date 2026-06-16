@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import FavoriteButton from "./FavoriteButton";
 
 interface Ingredient {
   id: string;
@@ -21,7 +22,13 @@ interface Recipe {
   ingredients: Ingredient[];
 }
 
-export default function RecipeDetailClient({ recipe }: { recipe: Recipe }) {
+export default function RecipeDetailClient({
+  recipe,
+  initialIsFavorited = false,
+}: {
+  recipe: Recipe;
+  initialIsFavorited?: boolean;
+}) {
   const [servings, setServings] = useState<number>(recipe.servings);
   const [checkedIngredients, setCheckedIngredients] = useState<Record<string, boolean>>({});
   const [completedSteps, setCompletedSteps] = useState<Record<number, boolean>>({});
@@ -110,10 +117,15 @@ export default function RecipeDetailClient({ recipe }: { recipe: Recipe }) {
             )}
             
             {/* Absolute bottom overlay title */}
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 sm:p-8 flex flex-col justify-end text-white">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 sm:p-8 flex items-end justify-between gap-6 text-white">
               <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight drop-shadow-sm">
                 {recipe.title}
               </h1>
+              <FavoriteButton
+                recipeId={recipe.id}
+                initialIsFavorited={initialIsFavorited}
+                className="shrink-0 bg-black/45 backdrop-blur-md border-white/10 text-white hover:text-red-400 hover:border-red-450/40 hover:bg-black/60 shadow-md"
+              />
             </div>
           </div>
 

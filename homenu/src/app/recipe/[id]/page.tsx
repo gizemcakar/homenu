@@ -4,6 +4,8 @@ import { PrismaClient } from "../../../../generated/prisma/client";
 import RecipeDetailClient from "@/src/components/RecipeDetailClient";
 import path from "path";
 import fs from "fs";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
 // Ensure the query engine library path is correctly loaded in local development environments
 const getEnginePath = () => {
@@ -15,9 +17,7 @@ const getEnginePath = () => {
 };
 
 const enginePath = getEnginePath();
-if (!process.env.PRISMA_QUERY_ENGINE_LIBRARY) {
-  process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
-}
+process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
 
 const prisma = new PrismaClient();
 
@@ -44,5 +44,21 @@ export default async function RecipeDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return <RecipeDetailClient recipe={recipe as any} />;
+  let initialIsFavorited = false;
+  const session = await getServerSession(authOptions);
+  if (session && session.user && session.user.email) {
+    const favoriteCount = await prisma.user.count({
+      where: {
+        email: session.user.email,
+        favoriteRecipes: {
+          some: {
+            id: id,
+          },
+        },
+      },
+    } as any);
+    initialIsFavorited = favoriteCount > 0;
+  }
+
+  return <RecipeDetailClient recipe={recipe as any} initialIsFavorited={initialIsFavorited} />;
 }
