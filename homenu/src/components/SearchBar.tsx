@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 
 type Ingredient = { id?: string; name: string; amount?: number; unit?: string };
 type Recipe = {
@@ -134,21 +135,43 @@ export default function SearchBar({
         {results && results.length > 0 && (
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {results.map((r) => (
-              <article key={r.id} className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
-                <h3 className="text-lg font-semibold text-black">{r.title}</h3>
-                <div className="mt-2 flex items-center gap-4 text-sm text-gray-600">
-                  <span>Hazırlık: {r.prepTime ?? "-"} dk</span>
-                  <span>Pişirme: {r.cookTime ?? "-"} dk</span>
-                </div>
-                <div className="mt-3 text-sm text-gray-700">
-                  <strong>Malzemeler:</strong>
-                  <ul className="mt-2 list-disc pl-5">
-                    {r.ingredients.map((ing, i) => (
-                      <li key={i}>{ing.name}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+              <Link href={`/recipe/${r.id}`} key={r.id} className="block group">
+                <article className="h-full rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:bg-zinc-900 cursor-pointer active:scale-[0.99] flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
+                      {r.title}
+                    </h3>
+                    <div className="mt-2.5 flex items-center gap-4 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                      <span className="flex items-center gap-1">
+                        ⏱️ Hazırlık: {r.prepTime ?? "-"} dk
+                      </span>
+                      <span className="flex items-center gap-1">
+                        🍳 Pişirme: {r.cookTime ?? "-"} dk
+                      </span>
+                    </div>
+                    <div className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
+                      <strong className="text-zinc-700 dark:text-zinc-300 font-bold block mb-1">Malzemeler:</strong>
+                      <div className="flex flex-wrap gap-1.5 mt-1.5">
+                        {r.ingredients.slice(0, 5).map((ing, i) => (
+                          <span key={i} className="inline-block px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-zinc-700 dark:text-zinc-300 text-[10px] font-medium border border-zinc-150 dark:border-zinc-750">
+                            {ing.name}
+                          </span>
+                        ))}
+                        {r.ingredients.length > 5 && (
+                          <span className="inline-block px-2.5 py-1 bg-zinc-50 dark:bg-zinc-800 text-zinc-450 text-[10px] font-bold">
+                            +{r.ingredients.length - 5} daha
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-5 pt-3 border-t border-zinc-100 dark:border-zinc-800/85 flex items-center justify-between text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                    <span>Detayları ve Yapılışı Gör</span>
+                    <span className="text-sm transition-transform group-hover:translate-x-1 inline-block">→</span>
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         )}
