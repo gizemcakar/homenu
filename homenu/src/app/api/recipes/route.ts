@@ -3,8 +3,19 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { PrismaClient } from "../../../../generated/prisma/client";
 
+import path from "path";
+import fs from "fs";
+
 // Ensure the query engine library path is correctly loaded in local development environments
-const enginePath = "/home/gcakar/Desktop/homenu/homenu/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node";
+const getEnginePath = () => {
+  const localPath = path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
+  if (fs.existsSync(localPath)) return localPath;
+  const parentPath = path.join(process.cwd(), "../generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
+  if (fs.existsSync(parentPath)) return parentPath;
+  return "/home/gcakar/projects/homenu/homenu/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node";
+};
+
+const enginePath = getEnginePath();
 if (!process.env.PRISMA_QUERY_ENGINE_LIBRARY) {
   process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
 }

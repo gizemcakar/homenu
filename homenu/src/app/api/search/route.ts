@@ -1,3 +1,6 @@
+import path from "path";
+import fs from "fs";
+
 type PrismaClientType = import("../../../../generated/prisma/client").PrismaClient;
 
 declare global {
@@ -6,7 +9,15 @@ declare global {
   var __prismaClient: PrismaClientType | undefined;
 }
 
-const enginePath = "/home/gcakar/Desktop/homenu/homenu/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node";
+const getEnginePath = () => {
+  const localPath = path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
+  if (fs.existsSync(localPath)) return localPath;
+  const parentPath = path.join(process.cwd(), "../generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
+  if (fs.existsSync(parentPath)) return parentPath;
+  return "/home/gcakar/projects/homenu/homenu/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node";
+};
+
+const enginePath = getEnginePath();
 if (!process.env.PRISMA_QUERY_ENGINE_LIBRARY) {
   process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
 }
