@@ -182,7 +182,7 @@ export default async function PublicProfilePage({ params, searchParams }: Public
                 HOMENU Üyesi
               </span>
               <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 px-3 py-1 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full border border-emerald-500/15">
-                Kamuya Açık Profil
+                Herkese Açık Profil
               </span>
             </div>
             <Link

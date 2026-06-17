@@ -6,6 +6,7 @@ import { PrismaClient } from "../../../generated/prisma/client";
 import Link from "next/link";
 import FavoriteButton from "@/src/components/FavoriteButton";
 import PrivacySettingsClient from "@/src/components/PrivacySettingsClient";
+import ProfileEditClient from "@/src/components/ProfileEditClient";
 import path from "path";
 import fs from "fs";
 
@@ -130,9 +131,12 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
                     href={`/profile/${user.id}`}
                     className="text-[11px] font-bold text-zinc-650 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100 underline underline-offset-4 tracking-wide"
                   >
-                    Kamuya Açık Profil Bağlantısı ↗
+                    Herkese Açık Profilini Gör ↗
                   </Link>
                 )}
+              </div>
+              <div className="mt-6 w-full">
+                <ProfileEditClient initialName={user.name || ""} />
               </div>
             </div>
 
