@@ -15,12 +15,15 @@ datasource db {
 }
 
 model User {
-  id              String   @id @default(cuid())
-  email           String   @unique
-  password        String
-  name            String?
-  recipes         Recipe[]
-  favoriteRecipes Recipe[] @relation("UserFavorites")
+  id                  String   @id @default(cuid())
+  email               String   @unique
+  password            String
+  name                String?
+  recipes             Recipe[]
+  favoriteRecipes     Recipe[] @relation("UserFavorites")
+  isProfilePublic     Boolean  @default(true)
+  showFavoritesPublic Boolean  @default(true)
+  showRecipesPublic   Boolean  @default(true)
 }
 
 model Recipe {

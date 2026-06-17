@@ -29,6 +29,9 @@ export type UserMinAggregateOutputType = {
   email: string | null
   password: string | null
   name: string | null
+  isProfilePublic: boolean | null
+  showFavoritesPublic: boolean | null
+  showRecipesPublic: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -36,6 +39,9 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   password: string | null
   name: string | null
+  isProfilePublic: boolean | null
+  showFavoritesPublic: boolean | null
+  showRecipesPublic: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -43,6 +49,9 @@ export type UserCountAggregateOutputType = {
   email: number
   password: number
   name: number
+  isProfilePublic: number
+  showFavoritesPublic: number
+  showRecipesPublic: number
   _all: number
 }
 
@@ -52,6 +61,9 @@ export type UserMinAggregateInputType = {
   email?: true
   password?: true
   name?: true
+  isProfilePublic?: true
+  showFavoritesPublic?: true
+  showRecipesPublic?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -59,6 +71,9 @@ export type UserMaxAggregateInputType = {
   email?: true
   password?: true
   name?: true
+  isProfilePublic?: true
+  showFavoritesPublic?: true
+  showRecipesPublic?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -66,6 +81,9 @@ export type UserCountAggregateInputType = {
   email?: true
   password?: true
   name?: true
+  isProfilePublic?: true
+  showFavoritesPublic?: true
+  showRecipesPublic?: true
   _all?: true
 }
 
@@ -146,6 +164,9 @@ export type UserGroupByOutputType = {
   email: string
   password: string
   name: string | null
+  isProfilePublic: boolean
+  showFavoritesPublic: boolean
+  showRecipesPublic: boolean
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -174,6 +195,9 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  isProfilePublic?: Prisma.BoolFilter<"User"> | boolean
+  showFavoritesPublic?: Prisma.BoolFilter<"User"> | boolean
+  showRecipesPublic?: Prisma.BoolFilter<"User"> | boolean
   recipes?: Prisma.RecipeListRelationFilter
   favoriteRecipes?: Prisma.RecipeListRelationFilter
 }
@@ -183,6 +207,9 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
+  isProfilePublic?: Prisma.SortOrder
+  showFavoritesPublic?: Prisma.SortOrder
+  showRecipesPublic?: Prisma.SortOrder
   recipes?: Prisma.RecipeOrderByRelationAggregateInput
   favoriteRecipes?: Prisma.RecipeOrderByRelationAggregateInput
 }
@@ -195,6 +222,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   password?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  isProfilePublic?: Prisma.BoolFilter<"User"> | boolean
+  showFavoritesPublic?: Prisma.BoolFilter<"User"> | boolean
+  showRecipesPublic?: Prisma.BoolFilter<"User"> | boolean
   recipes?: Prisma.RecipeListRelationFilter
   favoriteRecipes?: Prisma.RecipeListRelationFilter
 }, "id" | "email">
@@ -204,6 +234,9 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
+  isProfilePublic?: Prisma.SortOrder
+  showFavoritesPublic?: Prisma.SortOrder
+  showRecipesPublic?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -217,6 +250,9 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  isProfilePublic?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  showFavoritesPublic?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  showRecipesPublic?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
@@ -224,6 +260,9 @@ export type UserCreateInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   recipes?: Prisma.RecipeCreateNestedManyWithoutUserInput
   favoriteRecipes?: Prisma.RecipeCreateNestedManyWithoutFavoritedByInput
 }
@@ -233,6 +272,9 @@ export type UserUncheckedCreateInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutUserInput
   favoriteRecipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutFavoritedByInput
 }
@@ -242,6 +284,9 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recipes?: Prisma.RecipeUpdateManyWithoutUserNestedInput
   favoriteRecipes?: Prisma.RecipeUpdateManyWithoutFavoritedByNestedInput
 }
@@ -251,6 +296,9 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutUserNestedInput
   favoriteRecipes?: Prisma.RecipeUncheckedUpdateManyWithoutFavoritedByNestedInput
 }
@@ -260,6 +308,9 @@ export type UserCreateManyInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
@@ -267,6 +318,9 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -274,6 +328,9 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -281,6 +338,9 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  isProfilePublic?: Prisma.SortOrder
+  showFavoritesPublic?: Prisma.SortOrder
+  showRecipesPublic?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -288,6 +348,9 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  isProfilePublic?: Prisma.SortOrder
+  showFavoritesPublic?: Prisma.SortOrder
+  showRecipesPublic?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -295,6 +358,9 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  isProfilePublic?: Prisma.SortOrder
+  showFavoritesPublic?: Prisma.SortOrder
+  showRecipesPublic?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -318,6 +384,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type UserCreateNestedOneWithoutRecipesInput = {
@@ -377,6 +447,9 @@ export type UserCreateWithoutRecipesInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   favoriteRecipes?: Prisma.RecipeCreateNestedManyWithoutFavoritedByInput
 }
 
@@ -385,6 +458,9 @@ export type UserUncheckedCreateWithoutRecipesInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   favoriteRecipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutFavoritedByInput
 }
 
@@ -398,6 +474,9 @@ export type UserCreateWithoutFavoriteRecipesInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   recipes?: Prisma.RecipeCreateNestedManyWithoutUserInput
 }
 
@@ -406,6 +485,9 @@ export type UserUncheckedCreateWithoutFavoriteRecipesInput = {
   email: string
   password: string
   name?: string | null
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   recipes?: Prisma.RecipeUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -430,6 +512,9 @@ export type UserUpdateWithoutRecipesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favoriteRecipes?: Prisma.RecipeUpdateManyWithoutFavoritedByNestedInput
 }
 
@@ -438,6 +523,9 @@ export type UserUncheckedUpdateWithoutRecipesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favoriteRecipes?: Prisma.RecipeUncheckedUpdateManyWithoutFavoritedByNestedInput
 }
 
@@ -465,6 +553,9 @@ export type UserScalarWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
+  isProfilePublic?: Prisma.BoolFilter<"User"> | boolean
+  showFavoritesPublic?: Prisma.BoolFilter<"User"> | boolean
+  showRecipesPublic?: Prisma.BoolFilter<"User"> | boolean
 }
 
 export type UserUpdateWithoutFavoriteRecipesInput = {
@@ -472,6 +563,9 @@ export type UserUpdateWithoutFavoriteRecipesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recipes?: Prisma.RecipeUpdateManyWithoutUserNestedInput
 }
 
@@ -480,6 +574,9 @@ export type UserUncheckedUpdateWithoutFavoriteRecipesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recipes?: Prisma.RecipeUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -488,6 +585,9 @@ export type UserUncheckedUpdateManyWithoutFavoriteRecipesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isProfilePublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showFavoritesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showRecipesPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -535,6 +635,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   password?: boolean
   name?: boolean
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
   recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
   favoriteRecipes?: boolean | Prisma.User$favoriteRecipesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -545,6 +648,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   password?: boolean
   name?: boolean
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -552,6 +658,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   password?: boolean
   name?: boolean
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -559,9 +668,12 @@ export type UserSelectScalar = {
   email?: boolean
   password?: boolean
   name?: boolean
+  isProfilePublic?: boolean
+  showFavoritesPublic?: boolean
+  showRecipesPublic?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "name", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "name" | "isProfilePublic" | "showFavoritesPublic" | "showRecipesPublic", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   recipes?: boolean | Prisma.User$recipesArgs<ExtArgs>
   favoriteRecipes?: boolean | Prisma.User$favoriteRecipesArgs<ExtArgs>
@@ -581,6 +693,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     password: string
     name: string | null
+    isProfilePublic: boolean
+    showFavoritesPublic: boolean
+    showRecipesPublic: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1010,6 +1125,9 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly isProfilePublic: Prisma.FieldRef<"User", 'Boolean'>
+  readonly showFavoritesPublic: Prisma.FieldRef<"User", 'Boolean'>
+  readonly showRecipesPublic: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 
