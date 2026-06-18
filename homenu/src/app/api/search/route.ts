@@ -1,5 +1,7 @@
 import path from "path";
 import fs from "fs";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 type PrismaClientType = import("../../../../generated/prisma/client").PrismaClient;
 
@@ -53,9 +55,37 @@ export async function GET(request: Request) {
       ingredients: { some: { name: { equals: name, mode: "insensitive" as const } } },
     }));
 
-    const where = mode === "all" ? { AND: conditions } : { OR: conditions };
+    const ingredientFilter = mode === "all" ? { AND: conditions } : { OR: conditions };
 
     const prisma = await getPrismaClient();
+
+    // Yalnızca Bento Grid kategori aramalarında (source=category) kendi tariflerini filtrele.
+    // Manuel malzeme aramasında (source=manual) kendi tarifleri de dahil tüm sonuçlar gösterilir.
+    const source = url.searchParams.get("source") || "manual";
+    let userIdToExclude: string | undefined = undefined;
+
+    if (source === "category") {
+      const session = await getServerSession(authOptions);
+      if (session?.user?.email) {
+        const user = await prisma.user.findUnique({
+          where: { email: session.user.email },
+          select: { id: true },
+        });
+        if (user) {
+          userIdToExclude = user.id;
+        }
+      }
+    }
+
+    const where = userIdToExclude
+      ? {
+          AND: [
+            ingredientFilter,
+            { userId: { not: userIdToExclude } },
+          ],
+        }
+      : ingredientFilter;
+
     const recipes = await prisma.recipe.findMany({
       where,
       include: { ingredients: true },
@@ -71,3 +101,4 @@ export async function GET(request: Request) {
     );
   }
 }
+

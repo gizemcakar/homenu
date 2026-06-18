@@ -68,18 +68,42 @@ export default function RegisterPage() {
           {/* Header & Logo */}
           <div className="text-center space-y-3 mb-8">
             <div className="flex justify-center">
-              <div className="p-3 bg-zinc-100 dark:bg-zinc-800 rounded-2xl border border-zinc-200/50 dark:border-zinc-700/50 transition-colors">
+              <div className="p-2.5 bg-primary/10 rounded-2xl border border-primary/20 transition-colors">
                 <svg
-                  className="h-8 w-8 text-zinc-900 dark:text-zinc-100"
+                  className="h-10 w-10 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={1.75}
                 >
+                  {/* Stove/Grate Base */}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                    d="M5 19.5h14"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 19.5v2.5M16 19.5v2.5"
+                  />
+                  {/* Pan Body */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 13.5h16c0 3.5-3.5 6-8 6s-8-2.5-8-6z"
+                  />
+                  {/* Pan Handle */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 13.5L1 11"
+                  />
+                  {/* Cooking Steam / Heat Waves */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 11c.7-1.5-.7-2.5 0-4M12 9.5c.7-1.8-.7-3 0-4.8M16 10.5c.7-1.5-.7-2.5 0-4"
                   />
                 </svg>
               </div>

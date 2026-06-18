@@ -21,6 +21,7 @@ export default function FavoriteButton({
   const router = useRouter();
   const [isFavorited, setIsFavorited] = useState(initialIsFavorited);
   const [loading, setLoading] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     setIsFavorited(initialIsFavorited);
@@ -41,6 +42,12 @@ export default function FavoriteButton({
     // Optimistic UI update
     const previousState = isFavorited;
     setIsFavorited(!previousState);
+
+    // Trigger bounce animation when favoriting
+    if (!previousState) {
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 450);
+    }
 
     try {
       const res = await fetch("/api/favorites", {
@@ -75,12 +82,13 @@ export default function FavoriteButton({
       onClick={handleToggle}
       disabled={loading}
       aria-label={isFavorited ? "Favorilerden Çıkar" : "Favorilere Ekle"}
-      className={`group/fav relative p-2.5 rounded-xl border bg-white dark:bg-zinc-900 border-zinc-200/80 dark:border-zinc-800 text-zinc-450 dark:text-zinc-550 hover:text-red-500 hover:border-red-200 dark:hover:text-red-400 dark:hover:border-red-950 active:scale-[0.95] hover:shadow-sm transition-all duration-200 cursor-pointer disabled:opacity-50 ${className}`}
+      className={`group/fav relative p-2.5 rounded-xl border bg-card-bg border-card-border text-foreground/55 hover:text-primary hover:border-primary/30 active:scale-[0.95] hover:shadow-sm transition-all duration-200 cursor-pointer disabled:opacity-50 ${className}`}
     >
       <svg
-        className={`h-5 w-5 transition-transform duration-250 group-hover/fav:scale-110 ${
-          isFavorited ? "fill-red-500 stroke-red-500 dark:fill-red-400 dark:stroke-red-400 scale-[1.05]" : "fill-transparent stroke-current"
-        }`}
+        className={`h-5 w-5 transition-transform duration-250 group-hover/fav:scale-110 text-primary stroke-primary ${
+          isFavorited ? "fill-primary scale-[1.05]" : "fill-transparent"
+        } ${isAnimating ? "animate-heart-bounce" : ""}`}
+        stroke="currentColor"
         viewBox="0 0 24 24"
         strokeWidth={2}
         strokeLinecap="round"

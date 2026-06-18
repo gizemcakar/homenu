@@ -144,7 +144,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
               setIsEditingPassword(false); // Close the other form
               setMessage(null);
             }}
-            className="w-full bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer shadow-sm flex items-center justify-center gap-2"
+            className="w-full bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer shadow-sm flex items-center justify-center gap-2"
           >
             <svg
               className="w-3.5 h-3.5"
@@ -163,9 +163,9 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
             Ad Soyad Değiştir
           </button>
         ) : (
-          <form onSubmit={handleUpdateName} className="space-y-4 border border-zinc-150 dark:border-zinc-800 p-4 rounded-2xl bg-zinc-50/50 dark:bg-zinc-950/20 animate-fadeIn">
+          <form onSubmit={handleUpdateName} className="space-y-4 border border-card-border p-4 rounded-2xl bg-background/50 animate-fadeIn">
             <div className="space-y-1">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-foreground/50">
                 Ad Soyad
               </label>
               <input
@@ -174,7 +174,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
                 onChange={(e) => setName(e.target.value)}
                 disabled={loadingName}
                 placeholder="Ad ve Soyadınızı girin"
-                className="w-full px-3 py-2 text-sm bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100 text-zinc-850 dark:text-zinc-100 transition-colors"
+                className="w-full px-3 py-2 text-sm bg-card-bg border border-card-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary text-foreground placeholder-foreground/40 transition-colors"
                 required
               />
             </div>
@@ -183,7 +183,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
               <button
                 type="submit"
                 disabled={loadingName}
-                className="flex-1 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer shadow-sm"
+                className="flex-1 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer shadow-sm"
               >
                 {loadingName ? "Kaydediliyor..." : "Adı Güncelle"}
               </button>
@@ -195,7 +195,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
                   setMessage(null);
                 }}
                 disabled={loadingName}
-                className="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800 text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+                className="bg-background hover:bg-card-border text-foreground/80 border border-card-border text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer"
               >
                 İptal
               </button>
@@ -213,7 +213,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
               setIsEditingName(false); // Close the other form
               setMessage(null);
             }}
-            className="w-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-xs font-bold py-2.5 px-4 rounded-xl border border-zinc-200 dark:border-zinc-800 transition-all duration-200 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+            className="w-full bg-background hover:bg-card-border text-foreground/80 border border-card-border text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-200 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
           >
             <svg
               className="w-3.5 h-3.5"
@@ -232,9 +232,9 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
             Şifre Değiştir
           </button>
         ) : (
-          <form onSubmit={handleUpdatePassword} className="space-y-4 border border-zinc-150 dark:border-zinc-800 p-4 rounded-2xl bg-zinc-50/50 dark:bg-zinc-950/20 animate-fadeIn">
+          <form onSubmit={handleUpdatePassword} className="space-y-4 border border-card-border p-4 rounded-2xl bg-background/50 animate-fadeIn">
             <div className="space-y-1">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-foreground/50">
                 Yeni Şifre
               </label>
               <input
@@ -243,12 +243,12 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={loadingPassword}
                 placeholder="En az 6 karakter"
-                className="w-full px-3 py-2 text-sm bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100 text-zinc-850 dark:text-zinc-100 transition-colors"
+                className="w-full px-3 py-2 text-sm bg-card-bg border border-card-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary text-foreground placeholder-foreground/45 transition-colors"
                 required
               />
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-foreground/50">
                 Yeni Şifre (Tekrar)
               </label>
               <input
@@ -257,7 +257,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={loadingPassword}
                 placeholder="Şifreyi onaylayın"
-                className="w-full px-3 py-2 text-sm bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100 text-zinc-850 dark:text-zinc-100 transition-colors"
+                className="w-full px-3 py-2 text-sm bg-card-bg border border-card-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary text-foreground placeholder-foreground/45 transition-colors"
                 required
               />
             </div>
@@ -266,7 +266,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
               <button
                 type="submit"
                 disabled={loadingPassword}
-                className="flex-1 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer shadow-sm"
+                className="flex-1 bg-primary hover:bg-primary-hover text-white text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer shadow-sm"
               >
                 {loadingPassword ? "Kaydediliyor..." : "Şifreyi Güncelle"}
               </button>
@@ -279,7 +279,7 @@ export default function ProfileEditClient({ initialName }: ProfileEditProps) {
                   setMessage(null);
                 }}
                 disabled={loadingPassword}
-                className="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800 text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+                className="bg-background hover:bg-card-border text-foreground/80 border border-card-border text-xs font-bold py-2 px-3 rounded-xl transition-all duration-200 active:scale-[0.98] disabled:opacity-50 cursor-pointer"
               >
                 İptal
               </button>

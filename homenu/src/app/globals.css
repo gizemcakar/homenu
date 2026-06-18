@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAFAF9; /* stone-50 */
+  --foreground: #1C1917; /* stone-900 */
+  --primary: #991B1B; /* burgundy/red-800 */
+  --primary-hover: #7F1D1D; /* red-900 */
+  --accent: #D97706; /* amber-600 */
+  --accent-hover: #B45309; /* amber-700 */
+  --card-bg: #FFFFFF;
+  --card-border: #E7E5E4; /* stone-200 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0C0A09; /* stone-950 */
+    --foreground: #F5F5F4; /* stone-100 */
+    --primary: #EF4444; /* red-500 */
+    --primary-hover: #DC2626; /* red-600 */
+    --accent: #F59E0B; /* amber-500 */
+    --accent-hover: #D97706; /* amber-600 */
+    --card-bg: #1C1917; /* stone-900 */
+    --card-border: #292524; /* stone-800 */
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+@keyframes heart-bounce {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.35);
+  }
+  65% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-heart-bounce {
+  animation: heart-bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+

@@ -21,43 +21,67 @@ export default function Navbar() {
   const isActive = (path: string) => pathname === path;
 
   const linkClass = (path: string) =>
-    `text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-zinc-150 relative py-1 ${
+    `text-sm font-medium transition-colors hover:text-primary relative py-1 ${
       isActive(path)
-        ? "text-zinc-950 dark:text-zinc-50 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-zinc-950 dark:after:bg-zinc-50"
-        : "text-zinc-500 dark:text-zinc-400"
+        ? "text-foreground font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary"
+        : "text-foreground/60"
     }`;
 
   const mobileLinkClass = (path: string) =>
-    `block text-base font-medium py-2 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100 ${
+    `block text-base font-medium py-2 transition-colors hover:text-primary ${
       isActive(path)
-        ? "text-zinc-950 dark:text-zinc-50 font-bold"
-        : "text-zinc-500 dark:text-zinc-400"
+        ? "text-foreground font-bold"
+        : "text-foreground/60"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300">
+    <header className="sticky top-0 z-50 w-full border-b border-card-border bg-card-bg/85 backdrop-blur-md transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           
           {/* Left Corner: Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="p-2 bg-zinc-900 dark:bg-zinc-50 rounded-xl transition-all duration-300 group-hover:scale-105">
+              <div className="p-1.5 bg-primary rounded-xl transition-all duration-300 group-hover:scale-105">
                 <svg
-                  className="h-4.5 w-4.5 text-white dark:text-zinc-950"
+                  className="h-6 w-6 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
                 >
+                  {/* Stove/Grate Base */}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                    d="M5 19.5h14"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 19.5v2.5M16 19.5v2.5"
+                  />
+                  {/* Pan Body */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 13.5h16c0 3.5-3.5 6-8 6s-8-2.5-8-6z"
+                  />
+                  {/* Pan Handle */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 13.5L1 11"
+                  />
+                  {/* Cooking Steam / Heat Waves */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 11c.7-1.5-.7-2.5 0-4M12 9.5c.7-1.8-.7-3 0-4.8M16 10.5c.7-1.5-.7-2.5 0-4"
                   />
                 </svg>
               </div>
-              <span className="text-lg font-black tracking-widest text-zinc-900 dark:text-zinc-50">
+              <span className="text-lg font-black tracking-widest text-foreground">
                 HOMENU
               </span>
             </Link>
@@ -83,15 +107,15 @@ export default function Navbar() {
           {/* Desktop Authentication Controls */}
           <div className="hidden md:flex items-center gap-4">
             {status === "loading" ? (
-              <div className="h-8 w-24 animate-pulse rounded-xl bg-zinc-100 dark:bg-zinc-800" />
+              <div className="h-8 w-24 animate-pulse rounded-xl bg-card-border/65" />
             ) : status === "authenticated" ? (
               <div className="flex items-center gap-3">
-                <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 max-w-[150px] truncate">
+                <span className="text-xs font-semibold text-foreground/60 max-w-[150px] truncate">
                   {session.user?.name || session.user?.email}
                 </span>
                 <button
                   onClick={handleSignOut}
-                  className="bg-zinc-50 hover:bg-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-850 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-bold py-2 px-4 rounded-xl transition-all duration-200 active:scale-[0.97] cursor-pointer"
+                  className="bg-card-bg hover:bg-background border border-card-border text-foreground/80 text-xs font-bold py-2 px-4 rounded-xl transition-all duration-200 active:scale-[0.97] cursor-pointer"
                 >
                   Çıkış Yap
                 </button>
@@ -100,13 +124,13 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 text-sm font-semibold py-2 px-4 transition-colors"
+                  className="text-foreground/75 hover:text-primary text-sm font-semibold py-2 px-4 transition-colors"
                 >
                   Giriş Yap
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-sm font-semibold py-2.5 px-5 rounded-xl shadow-sm transition-all duration-200 active:scale-[0.97]"
+                  className="bg-primary hover:bg-primary-hover text-white text-sm font-semibold py-2.5 px-5 rounded-xl shadow-sm transition-all duration-200 active:scale-[0.97]"
                 >
                   Kayıt Ol
                 </Link>
@@ -118,7 +142,7 @@ export default function Navbar() {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors focus:outline-none cursor-pointer"
+              className="p-2 text-foreground/60 hover:text-primary transition-colors focus:outline-none cursor-pointer"
             >
               {isOpen ? (
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -137,7 +161,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 transition-colors">
+        <div className="md:hidden border-t border-card-border bg-card-bg transition-colors">
           <div className="px-4 py-4 space-y-4">
             
             {/* Nav links */}
@@ -156,10 +180,10 @@ export default function Navbar() {
             )}
 
             {/* Auth actions */}
-            <div className="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+            <div className="pt-2 border-t border-card-border">
               {status === "authenticated" ? (
                 <div className="space-y-3">
-                  <div className="text-xs text-zinc-400 dark:text-zinc-500 truncate">
+                  <div className="text-xs text-foreground/50 truncate">
                     {session.user?.name || session.user?.email}
                   </div>
                   <button
@@ -167,7 +191,7 @@ export default function Navbar() {
                       setIsOpen(false);
                       handleSignOut();
                     }}
-                    className="w-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer"
+                    className="w-full bg-background hover:bg-card-border text-foreground text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer"
                   >
                     Çıkış Yap
                   </button>
@@ -177,14 +201,14 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     onClick={() => setIsOpen(false)}
-                    className="w-full text-center border border-zinc-200 dark:border-zinc-850 text-zinc-850 dark:text-zinc-200 text-sm font-semibold py-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+                    className="w-full text-center border border-card-border text-foreground text-sm font-semibold py-2.5 rounded-xl hover:bg-background transition-colors"
                   >
                     Giriş Yap
                   </Link>
                   <Link
                     href="/register"
                     onClick={() => setIsOpen(false)}
-                    className="w-full text-center bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-sm font-semibold py-2.5 rounded-xl transition-colors"
+                    className="w-full text-center bg-primary hover:bg-primary-hover text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
                   >
                     Kayıt Ol
                   </Link>

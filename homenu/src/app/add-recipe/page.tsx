@@ -120,11 +120,11 @@ export default function AddRecipePage() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-zinc-50 dark:bg-zinc-950 px-4 py-12 transition-colors duration-300">
+    <div className="relative min-h-screen w-full bg-background px-4 py-12 transition-colors duration-300">
       {/* Decorative background glows */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-zinc-200/20 dark:bg-zinc-900/10 blur-[120px] transition-colors" />
-        <div className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-zinc-200/20 dark:bg-zinc-900/10 blur-[120px] transition-colors" />
+        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px] transition-colors" />
+        <div className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px] transition-colors" />
       </div>
 
       <div className="relative max-w-4xl mx-auto z-10 space-y-6">
@@ -133,26 +133,26 @@ export default function AddRecipePage() {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-foreground/60 hover:text-primary transition-colors"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Geri Dön
           </Link>
-          <div className="text-xs text-zinc-400 dark:text-zinc-500">
+          <div className="text-xs text-foreground/55">
             Yeni Tarif Ekleme Modülü
           </div>
         </div>
 
         {/* Main Form Card */}
-        <div className="bg-white dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-xl dark:shadow-2xl/30 rounded-3xl p-6 sm:p-10 w-full transition-all duration-300">
+        <div className="bg-card-bg border border-card-border shadow-xl rounded-3xl p-6 sm:p-10 w-full transition-all duration-300">
           
           <div className="mb-8">
-            <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground">
               Yeni Yemek Tarifi Ekle
             </h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1.5">
+            <p className="text-sm text-foreground/60 mt-1.5">
               Tarif detaylarını, malzemeleri ve hazırlanış adımlarını ekleyerek tarif listenizi zenginleştirin.
             </p>
           </div>
@@ -160,16 +160,16 @@ export default function AddRecipePage() {
           <form onSubmit={handleSubmit} className="space-y-8">
             
             {/* Grid for General settings */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-zinc-100 dark:border-zinc-800 pb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-card-border pb-8">
               
               {/* General inputs */}
               <div className="space-y-4">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/50">
                   Genel Bilgiler
                 </h3>
 
                 <div className="space-y-2">
-                  <label htmlFor="title" className="text-xs font-semibold text-zinc-600 dark:text-zinc-300 block">
+                  <label htmlFor="title" className="text-xs font-semibold text-foreground/70 block">
                     Tarif Başlığı
                   </label>
                   <input
@@ -180,14 +180,14 @@ export default function AddRecipePage() {
                     disabled={loading}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-4 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-900 dark:focus:border-zinc-100 transition-all duration-200 disabled:opacity-50"
+                    className="w-full bg-background border border-card-border rounded-xl py-2.5 px-4 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 disabled:opacity-50"
                   />
                 </div>
 
                 <div className="grid grid-cols-3 gap-4">
                   
                   <div className="space-y-2">
-                    <label htmlFor="servings" className="text-xs font-semibold text-zinc-600 dark:text-zinc-300 block">
+                    <label htmlFor="servings" className="text-xs font-semibold text-foreground/70 block">
                       Kişi Sayısı
                     </label>
                     <input
@@ -198,12 +198,12 @@ export default function AddRecipePage() {
                       disabled={loading}
                       value={servings}
                       onChange={(e) => setServings(e.target.value)}
-                      className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-3 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-900 dark:focus:border-zinc-100 transition-all duration-200 disabled:opacity-50"
+                      className="w-full bg-background border border-card-border rounded-xl py-2.5 px-3 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 disabled:opacity-50"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="prepTime" className="text-xs font-semibold text-zinc-600 dark:text-zinc-300 block">
+                    <label htmlFor="prepTime" className="text-xs font-semibold text-foreground/70 block">
                       Hazırlama (dk)
                     </label>
                     <input
@@ -214,12 +214,12 @@ export default function AddRecipePage() {
                       disabled={loading}
                       value={prepTime}
                       onChange={(e) => setPrepTime(e.target.value)}
-                      className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-3 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-900 dark:focus:border-zinc-100 transition-all duration-200 disabled:opacity-50"
+                      className="w-full bg-background border border-card-border rounded-xl py-2.5 px-3 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 disabled:opacity-50"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="cookTime" className="text-xs font-semibold text-zinc-600 dark:text-zinc-300 block">
+                    <label htmlFor="cookTime" className="text-xs font-semibold text-foreground/70 block">
                       Pişirme (dk)
                     </label>
                     <input
@@ -230,7 +230,7 @@ export default function AddRecipePage() {
                       disabled={loading}
                       value={cookTime}
                       onChange={(e) => setCookTime(e.target.value)}
-                      className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-3 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:focus:ring-zinc-100/10 focus:border-zinc-900 dark:focus:border-zinc-100 transition-all duration-200 disabled:opacity-50"
+                      className="w-full bg-background border border-card-border rounded-xl py-2.5 px-3 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 disabled:opacity-50"
                     />
                   </div>
 
@@ -238,18 +238,18 @@ export default function AddRecipePage() {
               </div>
 
               {/* Informative text box */}
-              <div className="bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/50 rounded-2xl p-5 flex flex-col justify-center gap-3">
+              <div className="bg-primary/[0.02] border border-primary/15 rounded-2xl p-5 flex flex-col justify-center gap-3">
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 text-zinc-700 dark:text-zinc-300">
+                  <div className="p-2 bg-primary/10 rounded-xl border border-primary/20 text-primary">
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                    <h4 className="text-sm font-semibold text-foreground">
                       Kolay Tarif Paylaşımı
                     </h4>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                    <p className="text-xs text-foreground/60 mt-1 leading-relaxed">
                       Lütfen malzemelerin miktarını ve ölçü birimlerini (gram, kaşık, su bardağı vb.) net yazmaya özen gösterin. Bu sayede tarifleriniz diğer kullanıcıların mutfaklarında daha doğru sonuçlar verecektir.
                     </p>
                   </div>
@@ -261,14 +261,14 @@ export default function AddRecipePage() {
             {/* Ingredients Form Section */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/50">
                   Malzemeler
                 </h3>
                 <button
                   type="button"
                   onClick={handleAddIngredient}
                   disabled={loading}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-zinc-900 dark:text-zinc-550 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-750 rounded-lg py-1.5 px-3 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-primary bg-primary/10 border border-primary/20 rounded-lg py-1.5 px-3 hover:bg-primary/20 transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -290,7 +290,7 @@ export default function AddRecipePage() {
                         disabled={loading}
                         value={ingredient.name}
                         onChange={(e) => handleIngredientChange(index, "name", e.target.value)}
-                        className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-3 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors disabled:opacity-50"
+                        className="w-full bg-background border border-card-border rounded-xl py-2.5 px-3 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
                       />
                     </div>
 
@@ -305,7 +305,7 @@ export default function AddRecipePage() {
                         disabled={loading}
                         value={ingredient.amount}
                         onChange={(e) => handleIngredientChange(index, "amount", e.target.value)}
-                        className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-3 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors disabled:opacity-50"
+                        className="w-full bg-background border border-card-border rounded-xl py-2.5 px-3 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
                       />
                     </div>
 
@@ -315,7 +315,7 @@ export default function AddRecipePage() {
                         disabled={loading}
                         value={ingredient.unit}
                         onChange={(e) => handleIngredientChange(index, "unit", e.target.value)}
-                        className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2.5 px-3 text-sm text-zinc-950 dark:text-zinc-50 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors disabled:opacity-50"
+                        className="w-full bg-background border border-card-border rounded-xl py-2.5 px-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors disabled:opacity-50"
                       >
                         <option value="adet">adet</option>
                         <option value="gram">gram (g)</option>
@@ -339,7 +339,7 @@ export default function AddRecipePage() {
                       type="button"
                       onClick={() => handleRemoveIngredient(index)}
                       disabled={loading || ingredients.length === 1}
-                      className="p-2 text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                      className="p-2 text-foreground/40 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                     >
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -354,14 +354,14 @@ export default function AddRecipePage() {
             {/* Preparation Steps Section */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground/50">
                   Hazırlanış Adımları
                 </h3>
                 <button
                   type="button"
                   onClick={handleAddInstruction}
                   disabled={loading}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-zinc-900 dark:text-zinc-550 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-750 rounded-lg py-1.5 px-3 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-primary bg-primary/10 border border-primary/20 rounded-lg py-1.5 px-3 hover:bg-primary/20 transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -375,7 +375,7 @@ export default function AddRecipePage() {
                   <div key={index} className="flex gap-3 items-start animate-fadeIn">
                     
                     {/* Step number badge */}
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/50 dark:border-zinc-700/50 text-xs font-bold text-zinc-700 dark:text-zinc-350 shrink-0 mt-1">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-background border border-card-border text-xs font-bold text-primary shrink-0 mt-1">
                       {index + 1}
                     </div>
 
@@ -388,7 +388,7 @@ export default function AddRecipePage() {
                         disabled={loading}
                         value={step}
                         onChange={(e) => handleInstructionChange(index, e.target.value)}
-                        className="w-full bg-zinc-50/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl py-2 px-3 text-sm text-zinc-950 dark:text-zinc-50 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 transition-colors disabled:opacity-50 resize-y min-h-[50px]"
+                        className="w-full bg-background border border-card-border rounded-xl py-2 px-3 text-sm text-foreground placeholder-foreground/45 focus:outline-none focus:border-primary transition-colors disabled:opacity-50 resize-y min-h-[50px]"
                       />
                     </div>
 
@@ -397,7 +397,7 @@ export default function AddRecipePage() {
                       type="button"
                       onClick={() => handleRemoveInstruction(index)}
                       disabled={loading || instructions.length === 1}
-                      className="p-2 text-zinc-400 hover:text-red-500 dark:hover:text-red-400 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer mt-1"
+                      className="p-2 text-foreground/40 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer mt-1"
                     >
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -434,22 +434,22 @@ export default function AddRecipePage() {
             )}
 
             {/* Actions */}
-            <div className="flex gap-3 justify-end pt-4 border-t border-zinc-100 dark:border-zinc-800">
+            <div className="flex gap-3 justify-end pt-4 border-t border-card-border">
               <Link
                 href="/"
-                className="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-950 dark:text-zinc-300 font-semibold py-2.5 px-6 rounded-xl transition-colors text-sm active:scale-[0.98]"
+                className="bg-background hover:bg-card-border text-foreground/80 border border-card-border font-semibold py-2.5 px-6 rounded-xl transition-colors text-sm active:scale-[0.98]"
               >
                 İptal Et
               </Link>
               <button
                 type="submit"
                 disabled={loading || success}
-                className="bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-semibold py-2.5 px-8 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm shadow-md shadow-zinc-950/10 dark:shadow-none focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-50/20 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+                className="bg-primary hover:bg-primary-hover text-white font-semibold py-2.5 px-8 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm shadow-md active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
               >
                 {loading ? (
                   <>
                     <svg className="animate-spin h-4 w-4 text-current" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth={4} />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
                     <span>Kaydediliyor...</span>

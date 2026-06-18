@@ -56,10 +56,10 @@ export default function PrivacySettingsClient({
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-2">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-primary">
           Gizlilik Ayarları
         </h3>
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+        <p className="text-xs text-foreground/60">
           Hesabınızın ve tariflerinizin diğer kullanıcılar tarafından nasıl görüntüleneceğini kontrol edin.
         </p>
       </div>
@@ -79,12 +79,12 @@ export default function PrivacySettingsClient({
       <div className="space-y-4">
         
         {/* Toggle Profile Public */}
-        <div className="flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl">
+        <div className="flex items-center justify-between p-4 bg-background border border-card-border rounded-2xl">
           <div className="space-y-1 pr-4">
-            <label className="text-sm font-bold text-zinc-850 dark:text-zinc-50 block">
+            <label className="text-sm font-bold text-foreground block">
               Profilimi Herkese Aç
             </label>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 block leading-normal">
+            <span className="text-xs text-foreground/60 block leading-normal">
               Kapalı olduğunda, diğer kullanıcılar profilinizi görüntüleyemez ve "Bu profil gizlidir" uyarısı alır.
             </span>
           </div>
@@ -92,7 +92,7 @@ export default function PrivacySettingsClient({
             onClick={() => handleToggle("isProfilePublic", isProfilePublic, setIsProfilePublic)}
             disabled={loading !== null}
             className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-              isProfilePublic ? "bg-zinc-900 dark:bg-zinc-50" : "bg-zinc-200 dark:bg-zinc-800"
+              isProfilePublic ? "bg-primary" : "bg-card-border"
             }`}
           >
             <span
@@ -104,12 +104,12 @@ export default function PrivacySettingsClient({
         </div>
 
         {/* Toggle Show Recipes Public */}
-        <div className="flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl">
+        <div className="flex items-center justify-between p-4 bg-background border border-card-border rounded-2xl">
           <div className="space-y-1 pr-4">
-            <label className="text-sm font-bold text-zinc-850 dark:text-zinc-50 block">
+            <label className="text-sm font-bold text-foreground block">
               Eklediğim Tarifleri Göster
             </label>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 block leading-normal">
+            <span className="text-xs text-foreground/60 block leading-normal">
               Açık olduğunda, profilinizi ziyaret eden kullanıcılar eklediğiniz tariflerin listesini görebilir.
             </span>
           </div>
@@ -117,7 +117,7 @@ export default function PrivacySettingsClient({
             onClick={() => handleToggle("showRecipesPublic", showRecipesPublic, setShowRecipesPublic)}
             disabled={loading !== null}
             className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-              showRecipesPublic ? "bg-zinc-900 dark:bg-zinc-50" : "bg-zinc-200 dark:bg-zinc-800"
+              showRecipesPublic ? "bg-primary" : "bg-card-border"
             }`}
           >
             <span
@@ -129,12 +129,12 @@ export default function PrivacySettingsClient({
         </div>
 
         {/* Toggle Show Favorites Public */}
-        <div className="flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-900 border border-zinc-150 dark:border-zinc-850 rounded-2xl">
+        <div className="flex items-center justify-between p-4 bg-background border border-card-border rounded-2xl">
           <div className="space-y-1 pr-4">
-            <label className="text-sm font-bold text-zinc-850 dark:text-zinc-50 block">
+            <label className="text-sm font-bold text-foreground block">
               Favori Tariflerimi Göster
             </label>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 block leading-normal">
+            <span className="text-xs text-foreground/60 block leading-normal">
               Açık olduğunda, profilinizi ziyaret eden kullanıcılar beğendiğiniz tarifleri görebilir.
             </span>
           </div>
@@ -142,7 +142,7 @@ export default function PrivacySettingsClient({
             onClick={() => handleToggle("showFavoritesPublic", showFavoritesPublic, setShowFavoritesPublic)}
             disabled={loading !== null}
             className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-              showFavoritesPublic ? "bg-zinc-900 dark:bg-zinc-50" : "bg-zinc-200 dark:bg-zinc-800"
+              showFavoritesPublic ? "bg-primary" : "bg-card-border"
             }`}
           >
             <span
