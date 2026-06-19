@@ -1,5 +1,4 @@
-import path from "path";
-import fs from "fs";
+import "@/src/lib/prisma-engine";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
@@ -10,17 +9,6 @@ declare global {
   // eslint-disable-next-line no-var
   var __prismaClient: PrismaClientType | undefined;
 }
-
-const getEnginePath = () => {
-  const localPath = path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
-  if (fs.existsSync(localPath)) return localPath;
-  const parentPath = path.join(process.cwd(), "../generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
-  if (fs.existsSync(parentPath)) return parentPath;
-  return "/home/gcakar/projects/homenu/homenu/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node";
-};
-
-const enginePath = getEnginePath();
-process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
 
 async function getPrismaClient() {
   if (globalThis.__prismaClient) {

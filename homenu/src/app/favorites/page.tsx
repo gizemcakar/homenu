@@ -4,26 +4,10 @@ import { redirect } from "next/navigation";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { PrismaClient } from "../../../generated/prisma/client";
 import FavoritesListClient from "@/src/components/FavoritesListClient";
-import path from "path";
-import fs from "fs";
-
-
-
-
-
-// Ensure the query engine library path is correctly loaded in local development environments
-const getEnginePath = () => {
-  const localPath = path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
-  if (fs.existsSync(localPath)) return localPath;
-  const parentPath = path.join(process.cwd(), "../generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node");
-  if (fs.existsSync(parentPath)) return parentPath;
-  return "/home/gcakar/projects/homenu/homenu/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node";
-};
-
-const enginePath = getEnginePath();
-process.env.PRISMA_QUERY_ENGINE_LIBRARY = enginePath;
+import "@/src/lib/prisma-engine";
 
 const prisma = new PrismaClient();
+
 
 export default async function FavoritesPage() {
   const session = await getServerSession(authOptions);
